@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  /* Identidade visual: azul-marinho profundo, vidro translúcido e brilho ciano. */
+  --bg: #050d1f;
+  --panel: rgba(12, 28, 62, 0.62);
+  --panel-2: rgba(22, 48, 98, 0.5);
+  --line: rgba(86, 190, 255, 0.18);
+  --text: #f6f8fb;
+  --muted: #e0e8f3;
+  --accent: #33dccb;
+  --accent-soft: rgba(51, 220, 203, 0.14);
+  --warn: #f2b84b;
+  --azul: #2f7bff;
+  --ciano: #38d0ff;
+  --laranja: #f59e0b;
+  --roxo: #8b6bff;
+}
+
+/* Todos os tamanhos de texto do Tailwind aumentados em 3 px (0,1875 rem) em relação ao padrão. */
+@theme {
+  --text-xs: 0.9375rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 1.0625rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.1875rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.3125rem;
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 1.35;
+  --text-2xl: 1.6875rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.0625rem;
+  --text-3xl--line-height: 1.25;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel2: var(--panel-2);
+  --color-line: var(--line);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 560px at 78% -8%, rgba(47, 123, 255, 0.28), transparent 62%),
+    radial-gradient(900px 520px at 6% 104%, rgba(56, 208, 255, 0.14), transparent 62%),
+    radial-gradient(700px 400px at 100% 100%, rgba(139, 107, 255, 0.1), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Vidro: todos os painéis (bg-panel) ganham desfoque, borda luminosa e uma sombra azul suave. */
+.bg-panel {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 48px -28px rgba(47, 123, 255, 0.55);
+}
+.bg-panel2 {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Botões principais: degradê ciano para verde-água, com brilho. */
+.bg-accent {
+  background-image: linear-gradient(135deg, #38d0ff 0%, #33dccb 100%);
+  box-shadow: 0 8px 24px -10px rgba(56, 208, 255, 0.8);
+  transition: filter 0.15s, transform 0.15s;
+}
+.bg-accent:hover {
+  filter: brightness(1.08);
+}
+
+/* Campos: brilho ao receber foco. */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--ciano);
+  box-shadow: 0 0 0 3px rgba(56, 208, 255, 0.18);
+}
+
+/* Elementos de marca usados na Home. */
+.texto-brilho {
+  background-image: linear-gradient(120deg, #ffffff 0%, #8fe3ff 55%, #38d0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.halo {
+  filter: drop-shadow(0 0 38px rgba(56, 208, 255, 0.45)) drop-shadow(0 0 90px rgba(47, 123, 255, 0.35));
+}
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.flutuar {
+  animation: flutuar 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flutuar { animation: none; }
+}
+
+/* Barras de rolagem finas e discretas, no tom do tema, em vez da barra clara e grossa padrão. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a4a7a transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2a4a7a;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #3b66a6;
+  background-clip: content-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
